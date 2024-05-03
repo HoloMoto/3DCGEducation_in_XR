@@ -8,13 +8,28 @@ namespace HoloMoto.Manager
     {
         [SerializeField]GameObject[] vertices;
         [SerializeField]MeshRenderer renderer;
-        
+        [SerializeField]GameObject[] edge;
         //ポリゴン表示モードの場合
         [SerializeField]bool isTrianglesMode = false;
+        public bool isEdgeShowMode = false;
         public bool updateMesh = false;
         // Start is called before the first frame update
         void Start()
         {
+            if (isEdgeShowMode)
+            {
+                foreach (var e in edge)
+                {
+                    e.SetActive(true);
+                }
+            }
+            else
+            {
+                foreach (var e in edge)
+                {
+                    e.SetActive(false);
+                }
+            }
         }
 
         private bool isUpdate = true;
@@ -28,6 +43,12 @@ namespace HoloMoto.Manager
                     StartCoroutine(UpdateMesh());
                 }
             }
+
+            if (isEdgeShowMode)
+            {
+                EdgeSet();
+            }
+
         }
         IEnumerator UpdateMesh()
         {
@@ -75,6 +96,20 @@ namespace HoloMoto.Manager
             }
         }
 
+        public void EdgeSet()
+        {
+          //edgeobjectのそれぞれの辺をvertexとvertexを結ぶように設定
+edge[0].transform.position = (vertices[0].transform.position + vertices[1].transform.position) / 2;
+edge[0].transform.LookAt(vertices[1].transform.position);
+edge[0].transform.localScale = new Vector3(0.01f, 0.01f, Vector3.Distance(vertices[0].transform.position, vertices[1].transform.position));
+edge[1].transform.position = (vertices[1].transform.position + vertices[2].transform.position) / 2;
+edge[1].transform.LookAt(vertices[2].transform.position);
+edge[1].transform.localScale = new Vector3(0.01f, 0.01f, Vector3.Distance(vertices[1].transform.position, vertices[2].transform.position));
+edge[2].transform.position = (vertices[2].transform.position + vertices[0].transform.position) / 2;
+edge[2].transform.LookAt(vertices[0].transform.position);
+edge[2].transform.localScale = new Vector3(0.01f, 0.01f, Vector3.Distance(vertices[2].transform.position, vertices[0].transform.position));
+            
+        }
 
     }
 }
