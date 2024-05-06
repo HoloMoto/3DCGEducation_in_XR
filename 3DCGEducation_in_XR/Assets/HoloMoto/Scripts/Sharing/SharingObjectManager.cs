@@ -65,6 +65,7 @@ namespace HoloMoto.Manager
             avatar.transform.localPosition = Vector3.zero;
             // Roomにすでにいる人数をログで出力
             RoomMenberNum.text = "Player:" +PhotonNetwork.CurrentRoom.PlayerCount.ToString();  
+            Debug.Log("Player:" +PhotonNetwork.CurrentRoom.PlayerCount.ToString());
             sharingMode = SharingMode.NotSharing;
         }
 
