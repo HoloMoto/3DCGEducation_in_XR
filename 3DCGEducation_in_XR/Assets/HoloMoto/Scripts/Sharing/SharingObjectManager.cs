@@ -18,6 +18,8 @@ namespace HoloMoto.Manager
         public GameObject[] sharingTransform;
         public Transform sharingAnchor;
 
+        //画像を使用して位置合わせを行う場合
+        public bool _useImageTracking = true;
         
         //UnityのInspectorに表示するラベル
         [Header("UIs")]
@@ -30,7 +32,8 @@ namespace HoloMoto.Manager
         {
             None,
             Sharing,
-            NotSharing
+            NotSharing,
+            Error
         }
 
         public void ConnectPhoton()
@@ -73,7 +76,7 @@ namespace HoloMoto.Manager
         // Update is called once per frame
         void Update()
         {
-            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began && isUpdate)
+            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began && isUpdate && !_useImageTracking)
             {
                 Vector2 touchPosition = Input.GetTouch(0).position;
                 Ray ray = Camera.main.ScreenPointToRay(touchPosition);
