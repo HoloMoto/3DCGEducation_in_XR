@@ -1,0 +1,38 @@
+// RotateMesh.compute
+#pragma kernel CSMain
+
+// バッファの宣言
+StructuredBuffer<float3> inputVertices; // 元の頂点データ
+RWStructuredBuffer<float3> outputVertices; // 計算結果の頂点データ
+
+// 時間を表す定数
+float time;
+
+// 回転行列を計算する関数
+float4x4 GetRotationMatrixY(float angle)
+{
+    float s = sin(angle);
+    float c = cos(angle);
+    return float4x4(
+        float4(c, 0, -s, 0),
+        float4(0, 1,  0, 0),
+        float4(s, 0,  c, 0),
+        float4(0, 0,  0, 1)
+    );
+}
+
+[numthreads(256, 1, 1)] // スレッドの設定
+void CSMain(uint3 id : SV_DispatchThreadID)
+{
+    if (id.x >= inputVertices.Length) return;
+
+    // 元の頂点を取得
+    float3 vertex = inputVertices[id.x];
+
+    // 回転行列を計算
+    float4x4 rotationMatrix = GetRotationMatrixY(time);
+
+    // 回転を適用
+    float4 rotatedVertex = mul(rotationMatrix, float4(vertex, 1.0));
+    outputVertices[id.x] = rotatedVertex.xyz;
+}
