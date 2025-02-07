@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem.HID;
+using TMPro;
 
 namespace HoloMoto.Manager
 {
@@ -16,12 +17,16 @@ namespace HoloMoto.Manager
 
         [SerializeField] UnityEvent[] _Events;
 
+        [SerializeField] TextMeshPro _ToolTipText;
         [SerializeField] private Material _changeMaterial;
         [SerializeField] Material[] _unityChanMaterials;　
         public int _sMeshRendererMaterialCount = 0;
         public int _mRendererMaterialCount = 0;
         [SerializeField] UnityEngine.UI.Button _button;
 
+        [SerializeField] private Material _setPolygonMaterial;
+        [SerializeField] private Texture2D _initTexture;
+        [SerializeField] Texture2D _texture;
         private void Awake()
         {
             //forDebug
@@ -34,6 +39,7 @@ namespace HoloMoto.Manager
         // Start is called before the first frame update
         void Start()
         {
+            _setPolygonMaterial.SetTexture("_MainTex", _initTexture);
             Debug.Log("Level1 Start");
             Animator animator = _unityChan.GetComponent<Animator>();
             animator.SetTrigger("Next");
@@ -80,18 +86,25 @@ namespace HoloMoto.Manager
                 case 2:
                     //_Events[1].Invoke();
                     SetColorModel();
+                    _ToolTipText.text = "3DCG";
                     break;
                 case 3:
                     _Events[2].Invoke();
+                    _ToolTipText.text = "Wireframe";
                     break;
+                
                 case 4:
                     _Events[3].Invoke();
+                    _ToolTipText.text = "Wireframe";
                     break;
                 case 5:
                     _Events[4].Invoke();
+                    _setPolygonMaterial.SetTexture("_MainTex", _texture);
+                    _ToolTipText.text = "Polygon";
                     break;
                 case 6:
                     _Events[5].Invoke();
+                    _ToolTipText.text = "vertex";
                     break;
                 case 7:
                     _Events[6].Invoke();
