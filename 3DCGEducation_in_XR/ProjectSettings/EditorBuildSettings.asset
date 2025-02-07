@@ -9,7 +9,10 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/HoloMoto/Portal.unity
+    path: Assets/HoloMoto/MainScene/MainScene.unity
+    guid: a18da573830ae0e4da38f2e5114008fc
+  - enabled: 1
+    path: Assets/HoloMoto/Step1/Portal.unity
     guid: 2d3ed889e004403459407fa0dd418a21
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: d74a4abf807e68d4a995b83e7edf7086, type: 2}
