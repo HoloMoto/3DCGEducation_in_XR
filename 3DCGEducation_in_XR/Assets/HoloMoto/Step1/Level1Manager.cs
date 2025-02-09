@@ -104,10 +104,11 @@ namespace HoloMoto.Manager
                     break;
                 case 6:
                     _Events[5].Invoke();
-                    _ToolTipText.text = "vertex";
+                    _ToolTipText.text = "Polygon";
                     break;
                 case 7:
                     _Events[6].Invoke();
+                    _ToolTipText.text = "Vertex";
                     break;
                 case 8:
                     _Events[7].Invoke();
