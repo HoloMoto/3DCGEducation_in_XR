@@ -1,0 +1,8 @@
+Lighting & Tex,Here, we will look at lighting and texturing.
+Lighting,Lighting refers to the process of applying light.\nWithout light, rendering cannot be achieved, just as in the real world
+Texturering,Texturing refers to the process of appropriately assigning textures (images) to the parameters of a material.\n\nFirstly, the most basic texture has been assigned.\n\nAssigning a texture drastically changed the appearance
+NormalMap,Normal maps create the illusion of depth.\nThis distorts the way light hits the surface, creating detailed shadows.\nAs a result, areas that are in shadow are not affected.
+EmissionMap,The emission map recreates illuminated areas.\nIlluminated areas are rendered while ignoring the influence of light
+AOMap,The AO map or Ambient Occlusion Map, is a technique that uses ambient occlusion as a texture, which is otherwise costly to render in real-time.\nThis technique enhances the sense of scale by providing detailed surface texture.
+MetallicMap,null
+Lighting & Tex,"Lighting and texturing are both important for rendering in 3D CG.\nUsing them effectively can recreate scenes with very high quality.
